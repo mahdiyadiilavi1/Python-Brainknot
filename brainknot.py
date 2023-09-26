@@ -4,10 +4,9 @@ def execute(filename):
   f.close()
 
 
-def evaluate(code,inputs,stack0=[0],cellptr=0,crbit=0):
+def evaluate(code,inputs,inptr=0,stack0=[0],cellptr=0,crbit=0):
   code     = cleanup(list(code))
   bracemap = buildbracemap(code)
-  inptr = 0
   outputs = []
   codeptr = 0
 
@@ -44,7 +43,7 @@ def evaluate(code,inputs,stack0=[0],cellptr=0,crbit=0):
             comma = p+codeptr+1
           if i in ["]",","] and tmp == -1:
             finish = p+codeptr+1
-        stack0,codeptr,crbit,out = evaluate(code[codeptr+1:comma],inputs,stack0,cellptr,crbit)
+        stack0,codeptr,crbit,out = evaluate(code[codeptr+1:comma],inputs,inptr,stack0,cellptr,crbit)
         outputs.append(out)
       else:
         for p,i in enumerate(code[codeptr+1:]):
@@ -56,7 +55,7 @@ def evaluate(code,inputs,stack0=[0],cellptr=0,crbit=0):
             comma = p+codeptr+1
           if i == "]" and tmp == -1:
             finish = p+codeptr+1
-        stack0,codeptr,crbit,out = evaluate(code[comma:finish],inputs,stack0,cellptr,crbit)
+        stack0,codeptr,crbit,out = evaluate(code[comma:finish],inputs,inptr,stack0,cellptr,crbit)
         outputs.append(out)
       codeptr = finish-1
     codeptr += 1
