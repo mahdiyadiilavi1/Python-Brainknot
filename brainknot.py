@@ -42,7 +42,7 @@ def evaluate(code,inputs,stack0=[0],cellptr=0,crbit=0):
             tmp -= 1
           if i == "," and tmp == 0:
             comma = p+codeptr+1
-          if i == "]" and tmp == -1:
+          if i in ["]",","] and tmp == -1:
             finish = p+codeptr+1
         stack0,codeptr,crbit = evaluate(code[codeptr+1:comma],inputs,stack0,cellptr,crbit)
       else:
