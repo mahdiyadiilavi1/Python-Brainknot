@@ -44,7 +44,8 @@ def evaluate(code,inputs,stack0=[0],cellptr=0,crbit=0):
             comma = p+codeptr+1
           if i in ["]",","] and tmp == -1:
             finish = p+codeptr+1
-        stack0,codeptr,crbit = evaluate(code[codeptr+1:comma],inputs,stack0,cellptr,crbit)
+        stack0,codeptr,crbit,out = evaluate(code[codeptr+1:comma],inputs,stack0,cellptr,crbit)
+        outputs.append(out)
       else:
         for p,i in enumerate(code[codeptr+1:]):
           if i == "[":
@@ -55,7 +56,8 @@ def evaluate(code,inputs,stack0=[0],cellptr=0,crbit=0):
             comma = p+codeptr+1
           if i == "]" and tmp == -1:
             finish = p+codeptr+1
-        stack0,codeptr,crbit = evaluate(code[comma:finish],inputs,stack0,cellptr,crbit)
+        stack0,codeptr,crbit,out = evaluate(code[comma:finish],inputs,stack0,cellptr,crbit)
+        outputs.append(out)
       codeptr = finish-1
     codeptr += 1
   return [stack0,cellptr,crbit,''.join(outputs)]
@@ -87,4 +89,3 @@ def main():
     print("Output:",evaluate(code=code,inputs=input("Inputs:"))[3])
 
 if __name__ == "__main__": main()
-
