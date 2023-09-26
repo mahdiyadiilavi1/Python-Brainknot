@@ -5,7 +5,7 @@ Usage:
  or use `python3 brainknot.py` in order to run the code
 
 You can use it as a module as well:
-```
+```python
   import brainknot
 
   sourcecode = """
