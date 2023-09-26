@@ -5,6 +5,7 @@ Usage:
  or use `python3 brainknot.py` in order to run the code
 
 You can use it as a module as well:
+```
   import brainknot
 
   sourcecode = """
@@ -14,6 +15,6 @@ You can use it as a module as well:
   inputs = "011011"
 
   brainknot.evaluate(sourcecode,inputs)
-
-[Brainknot Main Repository](github.com/mahdiyadiilavi1/brainknot)
+```
+(Brainknot Main Repository)[github.com/mahdiyadiilavi1/brainknot]
 
