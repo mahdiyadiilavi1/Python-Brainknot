@@ -103,7 +103,7 @@ def brainknot(code, input_data):
       if current_bit:
         # if loop is at end come back to start
         code_index = find_loc(code, '(', code_index, '(', ')', reversed=True)
-    elif char == '.':
+    if char == '.':
       # Break loop (version 2)
       code_index = find_loc(code, ')', code_index, '(', ')') 
     code_index += 1
