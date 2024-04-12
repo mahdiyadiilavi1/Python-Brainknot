@@ -1,4 +1,4 @@
-def find_loc(code, char, index, start, end, reversed=False):
+def find_loc(code, char, index, start, end, reversed=False, ignore_warning=False):
     late = code[index+1:]
     matching = 0
     i = 0
@@ -23,8 +23,9 @@ def find_loc(code, char, index, start, end, reversed=False):
             i += 1
         cond = ((i < len(late)) and not reversed) or ((i >= 0) and reversed)
     else:
-        print('Error!')
-        return len(code)-1 if not reversed else 0
+        if not ignore_warning:
+            print('warning, could not find end of statement, this may break things')
+        return None if not reversed else 0
         
 
 
@@ -84,7 +85,7 @@ def brainknot(code, input_data):
           x = find_loc(code, ',', code_index, '[', ']')
           if x is None:
             # if couldn't find comma, find closed bracket
-            code_index = find_loc(code, ']', code_index, '[', ']')
+            code_index = find_loc(code, ']', code_index, '[', ']', ignore_warning=True)
           else:
             code_index = x
     elif char == ',':
@@ -101,7 +102,7 @@ def brainknot(code, input_data):
       # Loop end
       if current_bit:
         # if loop is at end come back to start
-        code_index = find_loc(code, '(', code_index, '(', ')', True)
+        code_index = find_loc(code, '(', code_index, '(', ')', reversed=True)
     elif char == '.':
       # Break loop (version 2)
       code_index = find_loc(code, ')', code_index, '(', ')') 
