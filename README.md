@@ -6,7 +6,7 @@ Usage:
 
 You can use it as a module as well:
 ```python
-  import brainknot
+  from brainknot import brainknot
 
   sourcecode = """
     >[>*<,><]>[>*<,><]>[>*<,><]
@@ -14,7 +14,8 @@ You can use it as a module as well:
 
   inputs = "011011"
 
-  brainknot.evaluate(sourcecode,inputs)
+  out = brainknot(sourcecode,inputs)
+  print(out)
 ```
 [Brainknot Main Repository](github.com/mahdiyadiilavi1/brainknot)
 
